@@ -1,6 +1,6 @@
 {
   "name": "homebridge-amqp",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "AMQP plugin for homebridge",
   "main": "./dist/index.js",
   "scripts": {
@@ -28,6 +28,7 @@
   "author": "Marvin Osswald",
   "license": "MIT",
   "dependencies": {
+    "@types/amqplib": "^0.5.8",
     "amqplib": "^0.5.2"
   },
   "devDependencies": {

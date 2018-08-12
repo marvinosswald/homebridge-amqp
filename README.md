@@ -1,4 +1,4 @@
-# Homebrige AMQP Connector
+# Homebridge AMQP Connector
 
 This is set to be a more abstract AMQP Connector then the exisiting one.
 

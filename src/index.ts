@@ -1,18 +1,16 @@
-import 'source-map-support/register';
-import AMQPConnector from "./AMQPConnector"
+import AMQPConnector from './AMQPConnector';
 
 
-let homebridge;
-declare var global: any
+declare var global: any;
 
-export = (api) => {
-  homebridge = api;  
-  global.Service = homebridge.Service  
-  global.Characteristic = homebridge.Characteristic
+export = (homebridge: any) => {
+  const hap = homebridge.hap;
+  global.Service = hap.Service;
+  global.Characteristic = hap.Characteristic;
 
   homebridge.registerAccessory(
-    "homebridge-amqp",
-    "AMQP",
+    'homebridge-amqp',
+    'AMQP',
     AMQPConnector
-  )
+  );
 };
