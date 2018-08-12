@@ -1,0 +1,27 @@
+{
+  "pluginAlias": "config",
+  "pluginType": "platform",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "connection": {
+        "title": "Connection String",
+        "type": "string",
+        "default": "amgp://guest:guest@localhost:5672/",
+        "minLength": 1,
+        "required": true
+      },
+      "queue": {
+        "title": "Queue",
+        "type": "string",
+        "default": "default",
+        "minLength": 1,
+        "required": true
+      }
+    }
+  },
+  "form": [
+    "connection",
+    "queue"
+  ]
+}
