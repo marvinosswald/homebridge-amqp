@@ -1,15 +1,12 @@
 {
   "name": "homebridge-amqp",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "AMQP plugin for homebridge",
   "main": "./dist/index.js",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
     "prepublishOnly": "npm i --package-lock-only && npm audit && npm run build"
-  },
-  "bin": {
-    "homebridge-amqp": "./dist/bin/standalone.js"
   },
   "repository": {
     "type": "git",
