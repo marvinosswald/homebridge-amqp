@@ -5,7 +5,6 @@ export default class Switch extends Service {
     private powerState: number;
 
     constructor(log: any, config: any) {
-        console.log(log);
         super(log, config);
     }
 

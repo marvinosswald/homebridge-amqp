@@ -41,7 +41,12 @@ export default abstract class Service {
     }
 
     update(method: string, value: number, callback: (error?: Error) => void) {
-        this.amqpSend('update ' + this.slug + ' ' + method + ' ' + value);
+        this.amqpSend('update ' + this.slug + ' ' + method + ' ' + value.toString(), {
+            value: value.toString(),
+            method: 'update',
+            property: method,
+            target: this.slug
+        });
         callback();
         this.log(
             `[${
@@ -50,7 +55,7 @@ export default abstract class Service {
         );
     }
 
-    async amqpSend(message: string) {
+    async amqpSend(message: string, headers = {}) {
         const conn = await this.amqp.connect(this.connection);
         try {
             const q = this.config['queue'];
@@ -60,8 +65,10 @@ export default abstract class Service {
             const channel = await conn.createConfirmChannel();
 
             await channel.assertQueue(q, {durable: false});
-
-            channel.sendToQueue(q, Buffer.from(msg));
+            channel.sendToQueue(q, Buffer.from(msg), {
+                appId: 'homebridge',
+                headers: headers
+            });
 
             // if message has been nacked, this will result in an error (rejected promise);
             await channel.waitForConfirms();

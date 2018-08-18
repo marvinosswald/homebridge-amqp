@@ -2,6 +2,9 @@
 
 This is set to be a more abstract AMQP Connector then the exisiting one.
 
+Sends payload as message and also seperated in the headers
+
+
 Heavily WIP !
 
 # Switch

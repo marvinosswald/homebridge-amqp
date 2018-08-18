@@ -25,11 +25,16 @@ class Service {
             .setCharacteristic(HapCharacteristic.SerialNumber, 'de.marvinosswald.AMQPConnector');
     }
     update(method, value, callback) {
-        this.amqpSend('update ' + this.slug + ' ' + method + ' ' + value);
+        this.amqpSend('update ' + this.slug + ' ' + method + ' ' + value.toString(), {
+            value: value.toString(),
+            method: 'update',
+            property: method,
+            target: this.slug
+        });
         callback();
         this.log(`[${this.name}] AMQP power state set function succeeded!`);
     }
-    amqpSend(message) {
+    amqpSend(message, headers = {}) {
         return __awaiter(this, void 0, void 0, function* () {
             const conn = yield this.amqp.connect(this.connection);
             try {
@@ -38,7 +43,10 @@ class Service {
                 // use a confirm channel so we can check the message is sent OK.
                 const channel = yield conn.createConfirmChannel();
                 yield channel.assertQueue(q, { durable: false });
-                channel.sendToQueue(q, Buffer.from(msg));
+                channel.sendToQueue(q, Buffer.from(msg), {
+                    appId: 'homebridge',
+                    headers: headers
+                });
                 // if message has been nacked, this will result in an error (rejected promise);
                 yield channel.waitForConfirms();
                 channel.close();

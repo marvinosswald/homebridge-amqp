@@ -67,9 +67,11 @@ export default class Shutter extends Service {
             time = time * -1;
         }
 
+
         this.update('moveForTime', time , () => {
             this.updatePositionState(2);
             this.updateCurrentPosition(targetPos);
+            callback(null, targetPos);
         });
     }
 

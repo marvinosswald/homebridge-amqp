@@ -3,7 +3,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const service_1 = require("./service");
 class Switch extends service_1.default {
     constructor(log, config) {
-        console.log(log);
         super(log, config);
     }
     getServices() {

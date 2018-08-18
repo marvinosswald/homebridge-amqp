@@ -62,6 +62,7 @@ class Shutter extends service_1.default {
         this.update('moveForTime', time, () => {
             this.updatePositionState(2);
             this.updateCurrentPosition(targetPos);
+            callback(null, targetPos);
         });
     }
     updatePositionState(state) {

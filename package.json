@@ -1,6 +1,6 @@
 {
   "name": "homebridge-amqp",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "AMQP plugin for homebridge",
   "main": "./dist/index.js",
   "scripts": {
