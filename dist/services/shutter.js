@@ -55,7 +55,7 @@ class Shutter extends service_1.default {
         const diff = Math.abs(targetPos - this.currentPosition);
         this.log((moveUp ? 'Moving up' : 'Moving down'));
         this.service.setCharacteristic(this.HapCharacteristic.PositionState, (moveUp ? 1 : 0));
-        let time = (this.config['motion_time'] / 100 * diff);
+        let time = Math.ceil((this.config['motion_time'] / 100 * diff));
         if (moveUp === false) {
             time = time * -1;
         }
