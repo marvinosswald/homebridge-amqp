@@ -61,7 +61,7 @@ export default class Shutter extends Service {
 
         this.service.setCharacteristic(this.HapCharacteristic.PositionState, (moveUp ? 1 : 0));
 
-        let time = (this.config['motion_time'] / 100 * diff);
+        let time = Math.ceil((this.config['motion_time'] / 100 * diff));
 
         if (moveUp === false) {
             time = time * -1;
