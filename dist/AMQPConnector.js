@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const switch_1 = require("./services/switch");
 const shutter_1 = require("./services/shutter");
+const window_1 = require("./services/window");
 class AMQPConnector {
     constructor(log, config) {
         this.config = config;
@@ -15,7 +16,8 @@ class AMQPConnector {
         const type = this.config['type'] || 'switch';
         const services = {
             'switch': switch_1.default,
-            'shutter': shutter_1.default
+            'shutter': shutter_1.default,
+            'window': window_1.default
         };
         this.service = new services[type](this.log, this.config);
         return this.service.getServices();

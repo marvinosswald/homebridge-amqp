@@ -4,18 +4,18 @@ const moveable_1 = require("./moveable");
 class Shutter extends moveable_1.default {
     constructor() {
         super(...arguments);
-        this.serviceType = 'WindowCovering';
+        this.serviceType = 'Window';
     }
     setTargetPosition(pos, callback) {
         const targetPos = this.targetPosition = pos;
         if (targetPos === this.currentPosition) {
-            this.log('Shutter already at destiny');
+            this.log('Window already at destiny');
             callback(null);
             return;
         }
         const moveUp = (targetPos >= this.currentPosition);
         const diff = Math.abs(targetPos - this.currentPosition);
-        this.log((moveUp ? 'Moving up' : 'Moving down'));
+        this.log((moveUp ? 'Closing' : 'Opening'));
         this.service.setCharacteristic(this.HapCharacteristic.PositionState, (moveUp ? 1 : 0));
         let time = Math.ceil((this.config['motion_time'] / 100 * diff));
         if (moveUp === false) {
@@ -29,4 +29,4 @@ class Shutter extends moveable_1.default {
     }
 }
 exports.default = Shutter;
-//# sourceMappingURL=shutter.js.map
+//# sourceMappingURL=window.js.map
