@@ -1,7 +1,7 @@
 import Service from './services/service';
 import Switch from './services/switch';
 import Shutter from './services/shutter';
-
+import Window from './services/window';
 
 export default class AMQPConnector {
     private service: Service;
@@ -21,7 +21,8 @@ export default class AMQPConnector {
         const type = this.config['type'] || 'switch';
         const services = {
             'switch': Switch,
-            'shutter': Shutter
+            'shutter': Shutter,
+            'window': Window
         };
         this.service = new services[type](this.log, this.config);
         return this.service.getServices();

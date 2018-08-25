@@ -1,20 +1,20 @@
 import Moveable from './moveable';
 
 export default class Shutter extends Moveable {
-    serviceType = 'WindowCovering';
+    serviceType = 'Window';
 
     setTargetPosition(pos, callback: (error: Error | null, state?: number) => void) {
         const targetPos = this.targetPosition = pos;
 
         if (targetPos === this.currentPosition) {
-            this.log('Shutter already at destiny');
+            this.log('Window already at destiny');
             callback(null);
             return;
         }
 
         const moveUp = (targetPos >= this.currentPosition);
         const diff = Math.abs(targetPos - this.currentPosition);
-        this.log((moveUp ? 'Moving up' : 'Moving down'));
+        this.log((moveUp ? 'Closing' : 'Opening'));
 
         this.service.setCharacteristic(this.HapCharacteristic.PositionState, (moveUp ? 1 : 0));
 
